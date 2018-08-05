@@ -225,9 +225,26 @@ const drawWaterMark = (context, width, height, text) => {
     context.restore();
 };
 
+/**
+ * Add background color to the convas
+ * @param {CanvasRenderingContext2D} context 2D context of canvas object
+ * @param {Number} width Width of canvas
+ * @param {Number} height Height of canvas
+ * @param {String} color color of background
+ */
+const drawBackground = (context, width, height, color) => {
+    context.save();
+
+    context.fillStyle = color;
+    context.fillRect(0, 0, width, height);
+
+    context.restore();
+};
+
 module.exports = {
     drawVertice,
     drawModule,
     allocateModule,
-    drawWaterMark
+    drawWaterMark,
+    drawBackground
 };

@@ -13,13 +13,15 @@ program
     .option("-W, --width <n>", "Root path of source application", parseInt)
     .option("-H, --height <n>", "Root path of source application", parseInt)
     .option("--watermark [text]", "Add custom watermark")
+    .option("--background <text>", "Add custom background (default: transparent)")
     .action(async () => {
         program.width = program.width || 3000;
         program.height = program.height || 3000;
         const watermarkText = "Made with ❤ and @arch/js";
 
         const config = {
-            watermark: program.watermark === true ? watermarkText: program.watermark
+            watermark: program.watermark === true ? watermarkText: program.watermark,
+            background: program.background
         };
 
         PNGExport(
