@@ -10,8 +10,8 @@ program
     .usage("[options]")
     .option("-O, --out <path>", "Output path of generated image", process.cwd())
     .option("-S, --src <path>", "Root path of source application", process.cwd())
-    .option("-W, --width <n>", "Root path of source application", parseInt)
-    .option("-H, --height <n>", "Root path of source application", parseInt)
+    .option("-W, --width <n>", "Width of generated image", parseInt)
+    .option("-H, --height <n>", "Height of generated image", parseInt)
     .option("--watermark [text]", "Add custom watermark")
     .option("--background <text>", "Add custom background (default: transparent)")
     .action(async () => {

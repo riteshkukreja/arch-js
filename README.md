@@ -15,12 +15,13 @@ Usage: arch-js [options]
 
 Options:
 
--O, --out <path>    Output path of generated image (default: <current-dir>)
--S, --src <path>    Root path of source application (default: <current-dir>)
--W, --width <n>     Root path of source application
--H, --height <n>    Root path of source application
---watermark [text]  Add custom watermark
--h, --help          output usage information
+    -O, --out <path>     Output path of generated image (default: /home)
+    -S, --src <path>     Root path of source application (default: /home)
+    -W, --width <n>      Width of generated image
+    -H, --height <n>     Height of generated image
+    --watermark [text]   Add custom watermark
+    --background <text>  Add custom background (default: transparent)
+    -h, --help           output usage information
 ```
 
 ## Project Architecture
