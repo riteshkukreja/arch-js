@@ -1,3 +1,4 @@
+const path = require("path");
 
 /**
  * Perform a topological sort on the modules to figure out the drawing order of each module.
@@ -21,7 +22,7 @@ const getTopologicalStack = (map) => {
 
             const dependency = module._imports;
             dependency
-                .map(a => map.get(a))
+                .map(a => map.get(a) || map.get(path.join(a,'/index')))
                 .filter(a => a !== null && a !== undefined )
                 .forEach(
                     a => dfs(a, level+1)
