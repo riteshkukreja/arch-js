@@ -37,17 +37,28 @@ const invertColor =
 const drawArrow = (context, fromx, fromy, tox, toy) => {
     var headlen = 15;   // length of head in pixels
     var angle = Math.atan2(toy-fromy,tox-fromx);
-    context.moveTo(fromx, fromy);
-    context.lineTo(tox, toy);
-    context.stroke();
+    drawLine(context, fromx, fromy, tox, toy);
 
     context.lineWidth = 1;
     context.moveTo(tox, toy);
     context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
-    // context.moveTo(tox, toy);
     context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
 
     context.fill();
+};
+
+/**
+ * Draws a line from given starting to ending positions
+ * @param {CanvasRenderingContext2D} context context of canvas object
+ * @param {Number} fromx X coordinate of line start
+ * @param {Number} fromy Y coordinate of line start
+ * @param {Number} tox X coordinate of line end
+ * @param {Number} toy Y coordinate of line end
+ */
+const drawLine = (context, fromx, fromy, tox, toy) => {
+    context.moveTo(fromx, fromy);
+    context.lineTo(tox, toy);
+    context.stroke();
 };
 
 module.exports = {
@@ -55,5 +66,6 @@ module.exports = {
     parseColor,
     invertColor,
     random,
-    drawArrow
+    drawArrow,
+    drawLine
 };
