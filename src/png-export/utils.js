@@ -216,11 +216,11 @@ const drawWaterMark = (context, width, height, text) => {
     const startPosition = width - size.width - 20;
 
     /** Draw a dark background banner for watermark */
-    context.fillStyle = "#121212";
+    context.fillStyle = "#FF5722";
     context.fillRect(0, height - 50, width, height);
 
     /** Write text */
-    context.fillStyle = "#FF8C00";
+    context.fillStyle = "#B3E5FC";
     context.fillText(text, startPosition,  height - 15);
     context.restore();
 };
