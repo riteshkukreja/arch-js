@@ -43,6 +43,37 @@ const getTopologicalStack = (map) => {
     return result;
 };
 
+/**
+ * Finds a smallest line from Array of starting and ending positions.
+ * @param {Array} points1 Array of starting positions for possible lines
+ * @param {Array} points2 Array of ending positions for possible lines
+ */
+const findClosestPointPair = (points1, points2) => {
+    let minSoFar = Number.MAX_VALUE;
+    let pointSelected = {};
+
+    for(let i = 0; i < points1.length; i++) {
+        for(let j = 0; j < points2.length; j++) {
+            const p1 = points1[i];
+            const p2 = points2[j];
+
+            const a = p2.x - p1.x;
+            const b = p2.y - p1.y;
+
+            // const dist = Math.sqrt( a*a + b*b );
+            const dist = Math.hypot(a, b);
+
+            if(dist <= minSoFar) {
+                minSoFar = dist;
+                pointSelected = {start: p1, end: p2};
+            }
+        }
+    }
+
+    return pointSelected;
+}
+
 module.exports = {
-    getTopologicalStack
+    getTopologicalStack,
+    findClosestPointPair
 };
