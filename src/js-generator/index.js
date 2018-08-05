@@ -17,7 +17,7 @@ const map = new Map();
 const generateGraph = (root, file, projectRoot) => {
     /** Create a new graph node for this file */
     const info = path.parse(file);
-    const moduleName = path.join(info.dir, info.name).replace(projectRoot + "/", "");
+    const moduleName = path.join(info.dir, info.name).replace(path.join(projectRoot, "/"), "");
     const graph = new Graph(moduleName, path.join(info.dir, info.name), info.dir);
 
     /** Resolve all requires in file content */
