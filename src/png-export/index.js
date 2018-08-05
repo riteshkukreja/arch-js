@@ -3,7 +3,7 @@ const path = require("path");
 
 const Canvas = require("canvas");
 
-const { drawVertice, drawModule, allocateModule } = require("./utils");
+const { drawVertice, drawModule, allocateModule, drawWaterMark } = require("./utils");
 const { getTopologicalStack } = require("./helper");
 
 const writeToImage = async (image, file) => {
@@ -20,7 +20,7 @@ const writeToImage = async (image, file) => {
     });
 };
 
-module.exports = async (generator, srcDir, outFilePath, width=500, height=500) => {
+module.exports = async (generator, srcDir, outFilePath, width=500, height=500, config={}) => {
     try {
         const image = new Canvas(width, height);
         const context = image.getContext("2d");
@@ -60,6 +60,11 @@ module.exports = async (generator, srcDir, outFilePath, width=500, height=500) =
             }
 
             item = iterator.next();
+        }
+
+        if(config && config.watermark) {
+            /** Draw watermark */
+            drawWaterMark(context, width, height, config.watermark);
         }
 
         // /** Output png image */

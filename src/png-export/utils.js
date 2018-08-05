@@ -199,8 +199,35 @@ const allocateModule = (context, module, level, posInArray, numModules, width, h
     };
 };
 
+/**
+ * Draw a watermark text on the bottom right of canvas
+ * @param {CanvasRenderingContext2D} context 2D context of canvas object
+ * @param {Number} width Width of canvas
+ * @param {Number} height Height of canvas
+ * @param {String} text text to show as watermark
+ */
+const drawWaterMark = (context, width, height, text) => {
+    context.save();
+    
+    context.font = "bold 30px Impact";
+    const size = context.measureText(text);
+
+    // Add margin of 20px to right 
+    const startPosition = width - size.width - 20;
+
+    /** Draw a dark background banner for watermark */
+    context.fillStyle = "#121212";
+    context.fillRect(0, height - 50, width, height);
+
+    /** Write text */
+    context.fillStyle = "#FF8C00";
+    context.fillText(text, startPosition,  height - 15);
+    context.restore();
+};
+
 module.exports = {
     drawVertice,
     drawModule,
-    allocateModule
+    allocateModule,
+    drawWaterMark
 };
