@@ -1,13 +1,23 @@
 {
-  "name": "architecture_generator_node",
+  "name": "@arch/js",
   "version": "1.0.0",
-  "description": "Generates module diagram of project",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+  "description": "Architecture generator for Node JavaScript applications",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riteshkukreja/arch-js.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "Architecture",
+    "Node",
+    "JavaScript"
+  ],
+  "author": "Ritesh Kukreja <ritesh101094@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riteshkukreja/arch-js/issues"
+  },
+  "homepage": "https://github.com/riteshkukreja/arch-js#readme",
+  "dependencies": {
+    "commander": "^2.17.0"
+  }
 }
