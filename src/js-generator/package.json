@@ -1,5 +1,5 @@
 {
-  "name": "architecture_generator",
+  "name": "@arch/js-generator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "canvas": "^1.6.11",
     "chai": "^4.1.2",
     "mocha": "^5.2.0"
   }
