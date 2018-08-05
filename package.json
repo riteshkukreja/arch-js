@@ -1,0 +1,13 @@
+{
+  "name": "architecture_generator_node",
+  "version": "1.0.0",
+  "description": "Generates module diagram of project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
