@@ -1,5 +1,5 @@
 {
-  "name": "@arch/js",
+  "name": "node-architecture",
   "version": "1.0.0",
   "description": "Architecture generator for Node JavaScript applications",
   "repository": {

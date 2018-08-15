@@ -4,7 +4,7 @@ It generates Node app module architecture in PNG format. Module architecture is 
 ## Installation
 Install using npm 
 ```bash
-npm install @arch/js -g
+npm install node-architecture -g
 ```
 
 ## Usage
