@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/riteshkukreja/arch-js#readme",
   "dependencies": {
-    "commander": "^2.17.0"
+    "commander": "^2.17.0",
+    "canvas": "^1.6.11"
   },
   "bin": {
     "arch-js": "./bin/global.js"
