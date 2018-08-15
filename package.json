@@ -1,6 +1,6 @@
 {
   "name": "node-architecture",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Architecture generator for Node JavaScript applications",
   "repository": {
     "type": "git",
