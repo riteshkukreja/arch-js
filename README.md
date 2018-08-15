@@ -24,5 +24,8 @@ Options:
     -h, --help           output usage information
 ```
 
+## Dependencies
+This project depends on `canvas` package which requires `libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++`. For windows, you would need `.NET Framework` installed. **Dockerfile** is provided with the project if you want to use the package with a docker container.
+
 ## Project Architecture
 ![Project Architecture](https://raw.githubusercontent.com/riteshkukreja/arch-js/master/architecture.png)
