@@ -22,6 +22,22 @@ const RequiresGenerator = function* (root, content) {
 
         match = regex.require.exec(content);
     }
+
+    match = regex.import.exec(content);
+
+    while(match != null) {
+        const module = match[1];
+
+        /** Check if its a local dependency or node_modules */
+        if(module[0] != '/' && module[0] != '.')
+            yield module;
+        else {
+            /** Resolve path to make it absolute path */
+            yield path.resolve(root, module);
+        }
+
+        match = regex.import.exec(content);
+    }
 };
 
 /**

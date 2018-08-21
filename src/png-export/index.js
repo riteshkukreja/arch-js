@@ -28,12 +28,12 @@ const drawElements = async (context, generator, srcDir, width=500, height=500) =
     const stack = getTopologicalStack(map);
 
     const sizeMap = new Map();
-    const levels = Object.keys(stack).length;
+    const levels = stack.length;
 
-    for(const level in stack) {
+    for(let level = 0; level < stack.length; level++) {
         for(let i = 0; i < stack[level].length; i++) {
              /** Allocate positions and sizes to all modules */
-            const size = allocateModule(context, stack[level][i], level, i, stack[level].length, width, height, levels);
+            const size = allocateModule(context, stack[level][i], level+1, i, stack[level].length, width, height, levels);
             sizeMap.set(stack[level][i]._path, size);
 
             /** Display all modules */

@@ -41,7 +41,7 @@ const getTopologicalStack = (map) => {
         item = iterator.next();
     }
 
-    return result;
+    return normalizeModulesInLevels(result);
 };
 
 /**
@@ -99,8 +99,33 @@ const getTargetPointsOnModule = (mod) => {
     ];
 };
 
+/**
+ * Spread modules across multiple levels if number of modules in a level is above a certain number.
+ * @param {Map} levelMap map with keys as integer levels and values as array of modules
+ */
+const normalizeModulesInLevels = (levelMap) => {
+    const maxNumModulesInLevel = 5;
+
+    const normalizedMap = [];
+    
+    for(const level in levelMap) {
+        levelMap[level].sort((a, b) => a._imports.length > b._imports.length);
+
+        if(levelMap[level].length > maxNumModulesInLevel) {
+            while(levelMap[level].length > 0) {
+                normalizedMap.push(levelMap[level].splice(0, maxNumModulesInLevel));
+            }
+        } else {
+            normalizedMap.push(levelMap[level]);
+        }
+    }
+
+    return normalizedMap.reverse();
+};
+
 module.exports = {
     getTopologicalStack,
     findClosestPointPair,
-    getTargetPointsOnModule
+    getTargetPointsOnModule,
+    normalizeModulesInLevels
 };
