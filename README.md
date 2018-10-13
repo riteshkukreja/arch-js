@@ -19,6 +19,7 @@ Options:
     -S, --src <path>     Root path of source application (default: /home)
     -W, --width <n>      Width of generated image
     -H, --height <n>     Height of generated image
+    --dfd <n>            DFD level
     --watermark [text]   Add custom watermark
     --background <text>  Add custom background (default: transparent)
     -h, --help           output usage information
