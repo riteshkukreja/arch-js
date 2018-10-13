@@ -79,24 +79,38 @@ const findClosestPointPair = (points1, points2) => {
  * @param {Object} mod Dimensions of target object
  */
 const getTargetPointsOnModule = (mod) => {
-    return [
-        /** Middle four points */
-        { x: mod.x + mod.width/2,   y: mod.y },
-        { x: mod.x + mod.width,     y: mod.y + mod.height/2 },
-        { x: mod.x + mod.width/2,   y: mod.y + mod.height },
-        { x: mod.x,                 y: mod.y + mod.height/2 },
+    if(!mod.isCircle) {
+        return [
+            /** Middle four points */
+            { x: mod.x + mod.width/2,   y: mod.y },
+            { x: mod.x + mod.width,     y: mod.y + mod.height/2 },
+            { x: mod.x + mod.width/2,   y: mod.y + mod.height },
+            { x: mod.x,                 y: mod.y + mod.height/2 },
 
-        /** Eight 75% points */
-        { x: mod.x + mod.width/3,   y: mod.y },
-        { x: mod.x + mod.width,     y: mod.y + mod.height/3 },
-        { x: mod.x + mod.width/3,   y: mod.y + mod.height },
-        { x: mod.x,                 y: mod.y + mod.height/3 },
+            /** Eight 75% points */
+            { x: mod.x + mod.width/3,   y: mod.y },
+            { x: mod.x + mod.width,     y: mod.y + mod.height/3 },
+            { x: mod.x + mod.width/3,   y: mod.y + mod.height },
+            { x: mod.x,                 y: mod.y + mod.height/3 },
 
-        { x: mod.x + 2*(mod.width/3),   y: mod.y },
-        { x: mod.x + mod.width,         y: mod.y + 2*(mod.height/3) },
-        { x: mod.x + 2*(mod.width/3),   y: mod.y + mod.height },
-        { x: mod.x,                     y: mod.y + 2*(mod.height/3) },
-    ];
+            { x: mod.x + 2*(mod.width/3),   y: mod.y },
+            { x: mod.x + mod.width,         y: mod.y + 2*(mod.height/3) },
+            { x: mod.x + 2*(mod.width/3),   y: mod.y + mod.height },
+            { x: mod.x,                     y: mod.y + 2*(mod.height/3) },
+        ];
+    } else {
+        const radius = Math.max(mod.width, mod.height);
+        const centerX = mod.x + mod.width / 2;
+        const centerY = mod.y + mod.height / 2;
+
+        return [
+            /** Middle four points */
+            { x: centerX + radius,        y: centerY },
+            { x: centerX - radius,        y: centerY },
+            { x: centerX,                 y: centerY + radius },
+            { x: centerX,                 y: centerY - radius }
+        ];
+    }
 };
 
 /**
@@ -120,7 +134,7 @@ const normalizeModulesInLevels = (levelMap) => {
         }
     }
 
-    return normalizedMap.reverse();
+    return normalizedMap;//.reverse();
 };
 
 module.exports = {

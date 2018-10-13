@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const regex = require("./regex");
-const Graph = require("./graph");
+const Graph = require("../common/graph");
 const { RequiresGenerator, getExports } = require("./parser");
 
 const map = new Map();

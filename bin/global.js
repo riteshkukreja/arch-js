@@ -2,6 +2,7 @@
 
 const PNGExport = require("../src/png-export");
 const JsGenerator = require("../src/js-generator");
+const DFDGenerator = require("../src/dfd-generator");
 const path = require("path");
 
 const program = require("commander");
@@ -12,11 +13,13 @@ program
     .option("-S, --src <path>", "Root path of source application", process.cwd())
     .option("-W, --width <n>", "Width of generated image", parseInt)
     .option("-H, --height <n>", "Height of generated image", parseInt)
+    .option("--dfd <n>", "DFD level", parseInt)
     .option("--watermark [text]", "Add custom watermark")
     .option("--background <text>", "Add custom background (default: transparent)")
     .action(async () => {
         program.width = program.width || 3000;
         program.height = program.height || 3000;
+        program.dfd = program.dfd || -1;
         const watermarkText = "Made with ❤ and @arch/js";
 
         const config = {
@@ -25,7 +28,7 @@ program
         };
 
         PNGExport(
-            JsGenerator,
+            DFDGenerator(JsGenerator, program.dfd - 1),
             path.join(program.src),
             path.join(program.out, "out.png"),
             program.width,
