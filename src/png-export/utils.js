@@ -125,7 +125,15 @@ const drawModule = (context, size, module) => {
     context.shadowBlur = 5;
     context.shadowColor = size.color;
 
-    context.fillRect(size.x, size.y, size.width, size.height);
+    /** If this is a module, draw a recctangle */
+    if(!size.isCircle)
+        context.fillRect(size.x, size.y, size.width, size.height);
+    else {
+        /** otherwise draw a circle */
+        context.arc(size.x + size.width/2, size.y + size.height/2, Math.max(size.width, size.height), 0, 2*Math.PI);
+        context.fill();
+        context.beginPath();
+    }
     
     context.fillStyle = size.textColor;
     context.font = '30px Impact';
@@ -195,7 +203,8 @@ const allocateModule = (context, module, level, posInArray, numModules, width, h
         width: widthOfModule,
         height: heightOfModule,
         color: parseColor(color),
-        textColor: parseColor(textColor)
+        textColor: parseColor(textColor),
+        isCircle: module.Exports.length === 0
     };
 };
 

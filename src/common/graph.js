@@ -5,11 +5,12 @@ class Graph {
         this._module = mod;
         this._name = name;
         this._imports = [];
-        this._exports = {};
+        this._exports = [];
     }
 
     set Import(graph) {
-        this._imports.push(graph);
+        if(!this._imports.includes(graph) && this._path != graph)
+            this._imports.push(graph);
     }
 
     set Exports(graph) {
@@ -25,5 +26,13 @@ class Graph {
     }
 
 }
+
+Graph.from = (node) => {
+    const graph = new Graph(node._name, node._path, node._module);
+    node.Imports.forEach(a => graph.Import = a);
+    graph.Exports = node.Exports;
+
+    return graph;
+};
 
 module.exports = Graph;
