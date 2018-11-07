@@ -2,7 +2,7 @@ const path = require("path");
 const Graph = require("../common/graph");
 
 const dfdN = async (map, maxLevel, currentLevel) => {
-    const rootPath = "/home/app/";
+    const rootPath = process.env.PWD + "/";
     const res = new Map();
 
     for(const module of map.keys()) {
