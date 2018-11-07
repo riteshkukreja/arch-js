@@ -204,7 +204,7 @@ const allocateModule = (context, module, level, posInArray, numModules, width, h
         height: heightOfModule,
         color: parseColor(color),
         textColor: parseColor(textColor),
-        isCircle: module.Exports.length === 0
+        isCircle: module._exports.length === 0
     };
 };
 
@@ -255,5 +255,11 @@ module.exports = {
     drawModule,
     allocateModule,
     drawWaterMark,
-    drawBackground
+    drawBackground,
+    randomColorRGB,
+    random,
+    parseColor,
+    invertColor,
+    getBgColorFromExportType,
+    drawLine
 };

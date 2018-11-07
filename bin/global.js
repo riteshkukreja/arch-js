@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const PNGExport = require("../src/png-export");
+const HTMLExport = require("../src/html-export");
 const JsGenerator = require("../src/js-generator");
 const DFDGenerator = require("../src/dfd-generator");
 const path = require("path");
@@ -9,12 +10,13 @@ const program = require("commander");
 
 program
     .usage("[options]")
-    .option("-O, --out <path>", "Output path of generated image", process.cwd())
+    .option("-O, --out <path>", "Output path of generated image", path.join(process.cwd(), "out.png"))
     .option("-S, --src <path>", "Root path of source application", process.cwd())
     .option("-W, --width <n>", "Width of generated image", parseInt)
     .option("-H, --height <n>", "Height of generated image", parseInt)
     .option("--dfd <n>", "DFD level", parseInt)
     .option("--watermark [text]", "Add custom watermark")
+    .option("--html", "Export architecture as interactive HTML")
     .option("--background <text>", "Add custom background (default: transparent)")
     .action(async () => {
         program.width = program.width || 3000;
@@ -27,15 +29,17 @@ program
             background: program.background
         };
 
-        PNGExport(
+        const exporter = program.html ? HTMLExport : PNGExport;
+
+        exporter(
             DFDGenerator(JsGenerator, program.dfd - 1),
-            path.join(program.src),
-            path.join(program.out, "out.png"),
+            program.src,
+            program.out,
             program.width,
             program.height,
             config
         )
-        .then(() => console.log("Generated architecture at " + path.join(program.out, "out.png")))
+        .then(() => console.log("Generated architecture at " + program.out))
         .catch(err => console.error("Failed: ", err));
     })
     .parse(process.argv);

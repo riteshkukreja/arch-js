@@ -22,7 +22,7 @@ const getTopologicalStack = (map) => {
 
             const dependency = module._imports;
             dependency
-                .map(a => map.get(a) || map.get(path.join(a,'/index')))
+                .map(a => map.get(a) || map.get(a + '/index'))
                 .filter(a => a !== null && a !== undefined )
                 .forEach(
                     a => dfs(a, level+1)
