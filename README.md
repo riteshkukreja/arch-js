@@ -4,7 +4,7 @@ It generates Node app module architecture in PNG format. Module architecture is 
 ## Installation
 Install using npm 
 ```bash
-npm install node-architecture -g
+npm install node-architecture
 ```
 
 ## Usage
@@ -15,11 +15,12 @@ Usage: arch-js [options]
 
 Options:
 
-    -O, --out <path>     Output path of generated image (default: /home)
-    -S, --src <path>     Root path of source application (default: /home)
+    -O, --out <path>     Output path of generated image (default: /home/app/out.png)
+    -S, --src <path>     Root path of source application (default: /home/app)
     -W, --width <n>      Width of generated image
     -H, --height <n>     Height of generated image
     --dfd <n>            DFD level
+    --html               Export architecture as interactive HTML
     --watermark [text]   Add custom watermark
     --background <text>  Add custom background (default: transparent)
     -h, --help           output usage information
