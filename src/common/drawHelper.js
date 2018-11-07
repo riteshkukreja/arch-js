@@ -1,4 +1,4 @@
-const { getTargetPointsOnModule, findClosestPointPair } = require("./helper");
+const { getTargetPointsOnModule, findClosestPointPair } = require("./calcHelper");
 
 /**
  * Generates a random number between given minimum and maximum number.

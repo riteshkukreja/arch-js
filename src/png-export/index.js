@@ -3,8 +3,8 @@ const path = require("path");
 
 const Canvas = require("canvas");
 
-const { drawVertice, drawModule, allocateModule, drawWaterMark, drawBackground } = require("./utils");
-const { getTopologicalStack } = require("./helper");
+const { drawVertice, drawModule, allocateModule, drawWaterMark, drawBackground } = require("../common/drawHelper");
+const { getTopologicalStack } = require("../common/calcHelper");
 
 const writeToImage = async (image, file) => {
     return new Promise((resolve, reject) => {
