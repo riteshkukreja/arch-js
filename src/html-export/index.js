@@ -4,6 +4,7 @@ const path = require("path");
 
 const DrawHelper = require("../common/drawHelper");
 const CalcHelper = require("../common/calcHelper");
+const NavHelper = require("./nagivationHelper");
 
 const mapToJson = (map) => JSON.stringify([...map]);
 
@@ -42,6 +43,8 @@ const drawElements = async (context, map, width=500, height=500) => {
 
         item = iterator.next();
     }
+
+    return sizeMap;
 };
 
 const initialize = async (width, height, config={}, mapStr) => {
@@ -61,7 +64,10 @@ const initialize = async (width, height, config={}, mapStr) => {
         }
 
         /** Draw elements */
-        await drawElements(context, map, width, height);
+        const modulePositionMap = await drawElements(context, map, width, height);
+
+        /** Attach click handler */
+        attachModuleClickHandler(image, modulePositionMap, map);
 
         if(config && config.watermark) {
             /** Draw watermark */
@@ -89,7 +95,14 @@ module.exports = async (generator, srcDir, outDir, width=500, height=500, config
         const stream = fs.createWriteStream(path.join(outDir, "app.js"));
 
         /** Copy helper methods to app.js */
-        const methodsToCopy = [jsonToMap, ...Object.values(CalcHelper), ...Object.values(DrawHelper), drawElements, initialize];
+        const methodsToCopy = [
+            jsonToMap, 
+            ...Object.values(CalcHelper), 
+            ...Object.values(DrawHelper), 
+            ...Object.values(NavHelper),
+            drawElements, 
+            initialize];
+
         methodsToCopy
             .map(a => `const ${a.name} = ${a.toString()}`)
             .forEach(a => stream.write(a + "\n\n"));

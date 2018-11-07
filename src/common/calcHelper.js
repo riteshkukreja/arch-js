@@ -137,9 +137,22 @@ const normalizeModulesInLevels = (levelMap) => {
     return normalizedMap;//.reverse();
 };
 
+/**
+ * Determines whether the clicked position is inside the given rectangle
+ * @param {Number} posX X coordinate of the point
+ * @param {Number} posY Y coordinate of the point
+ */
+const isInsideRect = (posX, posY) => {
+    return (val) => !(
+        (posX < val.x || posX > val.x + val.width) ||
+        (posY < val.y || posY > val.y + val.height)
+    );
+};
+
 module.exports = {
     getTopologicalStack,
     findClosestPointPair,
     getTargetPointsOnModule,
-    normalizeModulesInLevels
+    normalizeModulesInLevels,
+    isInsideRect
 };
